@@ -19,13 +19,13 @@ ERROS criar(Tarefa tarefas[], int *pos) {
     tarefas[*pos].prioridade = prioridade;
 
     printf("Entre com a categoria: ");
-    fgets(tarefas[*pos].categoria, TAMANHO_CATEGORIA, stdin);
+    fgets(tarefas[*pos].categoria, tamanhocategoria, stdin);
     size_t len_cat = strlen(tarefas[*pos].categoria);
     if (tarefas[*pos].categoria[len_cat - 1] == '\n')
         tarefas[*pos].categoria[len_cat - 1] = '\0';
 
     printf("Entre com a descricao: ");
-    fgets(tarefas[*pos].descricao, TAMANHO_DESCRICAO, stdin);
+    fgets(tarefas[*pos].descricao, tamanhodescricao, stdin);
     size_t len_desc = strlen(tarefas[*pos].descricao);
     if (tarefas[*pos].descricao[len_desc - 1] == '\n')
         tarefas[*pos].descricao[len_desc - 1] = '\0';
