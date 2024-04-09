@@ -24,7 +24,7 @@ ERROS criar(Tarefa tarefas[], int *pos) {
     if (tarefas[*pos].categoria[len_cat - 1] == '\n')
         tarefas[*pos].categoria[len_cat - 1] = '\0';
 
-    printf("Entre com a descrição: ");
+    printf("Entre com a descricao: ");
     fgets(tarefas[*pos].descricao, 300, stdin);
     size_t len_desc = strlen(tarefas[*pos].descricao);
     if (tarefas[*pos].descricao[len_desc - 1] == '\n')

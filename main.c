@@ -7,8 +7,10 @@ int main(){
     Tarefa tarefas[TOTAL];
     int pos;
     ERROS erro = fs[4](tarefas, &pos);
-    if(erro != OK)
+    if(erro != OK) {
+        printf("Erro ao carregar tarefas. Reiniciando posicao.\n");
         pos = 0;
+    }
 
     int opcao;
     do{
@@ -21,14 +23,20 @@ int main(){
 
         scanf("%d", &opcao);
         opcao--;
-        if(opcao > 2)
+        if(opcao < 0 || opcao > 2) {
             printf("Opcao invalida\n");
-        else if(opcao >= 0)
-            fs[opcao](tarefas, &pos);
-        else
-            printf("Sair...\n");
+            continue;
+        }
+
+        erro = fs[opcao](tarefas, &pos);
+        if (erro != OK) {
+            printf("Erro ao executar a operacao.\n");
+        }
 
     } while(opcao >= 0);
 
-    fs[3](tarefas, &pos);
+    erro = fs[3](tarefas, &pos);
+    if (erro != OK) {
+        printf("Erro ao salvar tarefas.\n");
+    }
 }
