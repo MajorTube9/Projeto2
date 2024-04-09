@@ -1,4 +1,5 @@
 Sistema de Gerenciamento de Tarefas
+
 Este é um simples sistema de gerenciamento de tarefas em C. Ele permite que o usuário crie, liste, delete, salve e carregue tarefas em um arquivo binário.
 
 Funcionalidades
