@@ -1,9 +1,14 @@
+#ifndef TAREFAS_H
+#define TAREFAS_H
+
 #define TOTAL 100
+#define TAMANHO_DESCRICAO 300
+#define TAMANHO_CATEGORIA 100
 
 typedef struct {
     int prioridade;
-    char descricao[300];
-    char categoria[100];
+    char descricao[TAMANHO_DESCRICAO];
+    char categoria[TAMANHO_CATEGORIA];
 } Tarefa;
 
 typedef enum {OK, MAX_TAREFA, SEM_TAREFAS, NAO_ENCONTRADO, ABRIR, FECHAR, ESCREVER, LER} ERROS;
@@ -17,3 +22,5 @@ ERROS salvar(Tarefa tarefas[], int *pos);
 ERROS carregar(Tarefa tarefas[], int *pos);
 
 void clearBuffer();
+
+#endif /* TAREFAS_H */
