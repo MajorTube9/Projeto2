@@ -1,2 +1,9 @@
-# Projeto2
- Projeto 2 - Correção de bugs e novas funcionalidades Continuando o projeto anterior (https://github.com/cc2632/projeto0-2024-1), vamos corrigir alguns problemas encontrados no uso do programa e também adicionar algumas funcionalidades para deixar o programa melhor.
+Sistema de Gerenciamento de Tarefas
+Este é um simples sistema de gerenciamento de tarefas em C. Ele permite que o usuário crie, liste, delete, salve e carregue tarefas em um arquivo binário.
+
+Funcionalidades
+Criar Tarefa: Permite ao usuário criar uma nova tarefa, especificando sua prioridade, categoria e descrição.
+Deletar Tarefa: Permite ao usuário deletar uma tarefa existente, informando a posição da tarefa na lista.
+Listar Tarefas: Exibe todas as tarefas existentes na lista, incluindo sua prioridade, categoria e descrição.
+Salvar Tarefas: Salva todas as tarefas em um arquivo binário chamado "tarefas.bin".
+Carregar Tarefas: Carrega as tarefas previamente salvas do arquivo binário "tarefas.bin" para o programa.
