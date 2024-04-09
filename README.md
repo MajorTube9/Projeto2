@@ -14,3 +14,4 @@ Funcionalidades:
 •Salvar Tarefas: Salva todas as tarefas em um arquivo binário chamado "tarefas.bin".
 
 •Carregar Tarefas: Carrega as tarefas previamente salvas do arquivo binário "tarefas.bin" para o programa.
+:)
