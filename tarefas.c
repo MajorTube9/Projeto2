@@ -1,5 +1,4 @@
-#include <stdio.h>
-#include <string.h>
+#include <intrin.h>
 #include "tarefas.h"
 
 ERROS criar(Tarefa tarefas[], int *pos) {
@@ -21,13 +20,13 @@ ERROS criar(Tarefa tarefas[], int *pos) {
     printf("Entre com a categoria: ");
     fgets(tarefas[*pos].categoria, tamanhocategoria, stdin);
     size_t len_cat = strlen(tarefas[*pos].categoria);
-    if (tarefas[*pos].categoria[len_cat - 1] == '\n')
+    if (len_cat > 0 && tarefas[*pos].categoria[len_cat - 1] == '\n')
         tarefas[*pos].categoria[len_cat - 1] = '\0';
 
     printf("Entre com a descricao: ");
     fgets(tarefas[*pos].descricao, tamanhodescricao, stdin);
     size_t len_desc = strlen(tarefas[*pos].descricao);
-    if (tarefas[*pos].descricao[len_desc - 1] == '\n')
+    if (len_desc > 0 && tarefas[*pos].descricao[len_desc - 1] == '\n')
         tarefas[*pos].descricao[len_desc - 1] = '\0';
 
     (*pos)++;
@@ -36,15 +35,13 @@ ERROS criar(Tarefa tarefas[], int *pos) {
 }
 
 ERROS deletar(Tarefa tarefas[], int *pos){
-    // teste se existem tarefas
     if(*pos == 0)
         return SEM_TAREFAS;
 
-    // verifica se a tarefa escolhida existe
     int pos_deletar;
     printf("Entre com a posicao da tarefa a ser deletada: ");
     scanf("%d", &pos_deletar);
-    pos_deletar--; // garantir posicao certa no array
+    pos_deletar--;
     if(pos_deletar >= *pos || pos_deletar < 0)
         return NAO_ENCONTRADO;
 
@@ -75,7 +72,7 @@ ERROS listar(Tarefa tarefas[], int *pos) {
     }
 
     size_t len_cat = strlen(categoria);
-    if (categoria[len_cat - 1] == '\n') {
+    if (len_cat > 0 && categoria[len_cat - 1] == '\n') {
         categoria[len_cat - 1] = '\0';
     }
 
@@ -102,11 +99,7 @@ ERROS salvar(Tarefa tarefas[], int *pos){
     if(f == NULL)
         return ABRIR;
 
-    int qtd = fwrite(tarefas, TOTAL, sizeof(Tarefa), f);
-    if(qtd == 0)
-        return ESCREVER;
-
-    qtd = fwrite(pos, 1, sizeof(int), f);
+    int qtd = fwrite(tarefas, *pos, sizeof(Tarefa), f);
     if(qtd == 0)
         return ESCREVER;
 
@@ -125,9 +118,7 @@ ERROS carregar(Tarefa tarefas[], int *pos){
     if(qtd == 0)
         return LER;
 
-    qtd = fread(pos, 1, sizeof(int), f);
-    if(qtd == 0)
-        return LER;
+    *pos = qtd;
 
     if(fclose(f))
         return FECHAR;
@@ -145,7 +136,7 @@ ERROS exportar(Tarefa tarefas[], int *pos) {
         return ABRIR;
     }
 
-    for (int i = 0; i < pos; i++) {
+    for (int i = 0; i < *pos; i++) {
         fprintf(arquivo, "Prioridade: %d\tCategoria: %s\tDescricao: %s\n", tarefas[i].prioridade, tarefas[i].categoria, tarefas[i].descricao);
     }
 
