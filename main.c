@@ -2,16 +2,13 @@
 #include "tarefas.h"
 
 int main() {
-    char nome_arquivo[] = "./tarefas.bin";
-
-    // Ajustando o tamanho do array para seis e removendo a função carregar da lista
-    funcao fs[6] = {criar, deletar, listar, salvarTexto, salvar, carregar};
+    funcao fs[] = {criar, deletar, listar, salvar, carregar, exportar};
 
     Tarefa tarefas[TOTAL];
     int pos;
-    ERROS erro = fs[5](tarefas, &pos, nome_arquivo); // Carregar as tarefas do arquivo
+    ERROS erro = fs[4](tarefas, &pos);
     if (erro != OK) {
-        printf("Erro ao carregar tarefas. Reiniciando posição.\n");
+        printf("Erro ao carregar tarefas. Reiniciando posicao.\n");
         pos = 0;
     }
 
@@ -21,28 +18,36 @@ int main() {
         printf("1 - Criar tarefa\n");
         printf("2 - Deletar tarefa\n");
         printf("3 - Listar tarefas\n");
-        printf("4 - Salvar tarefas em arquivo de texto\n");
-        printf("5 - Salvar tarefas em arquivo binário\n");
-        printf("6 - Carregar tarefas de arquivo binário\n");
+        printf("4 - Exportar tarefas para arquivo de texto\n");
         printf("0 - Sair\n");
-        printf("Escolha uma opção: ");
+        printf("Escolha uma opcao: ");
 
         scanf("%d", &opcao);
-        if (opcao < 0 || opcao > 6) {
-            printf("Opção inválida\n");
+
+        if(opcao==4){
+            printf("arquivo salvo\n");
+        }
+
+
+        if (opcao < 0 || opcao > 4) { // Modifiquei o limite superior para 4
+            printf("Opcao invalida\n");
             continue;
         }
 
-        erro = fs[opcao - 1](tarefas, &pos, nome_arquivo);
+        if (opcao == 0)
+            break;
+
+        erro = fs[opcao - 1](tarefas, &pos);
         if (erro != OK) {
-            printf("Erro ao executar a operação.\n");
+            printf("Erro ao executar a operacao.\n");
         }
 
-    } while (opcao != 0);
+    } while (opcao >= 0);
 
-    erro = fs[4](tarefas, &pos, nome_arquivo); // Salvar as tarefas no arquivo binário
+    erro = fs[3](tarefas, &pos);
     if (erro != OK) {
         printf("Erro ao salvar tarefas.\n");
     }
     return 0;
+
 }
