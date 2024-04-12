@@ -1,4 +1,7 @@
 #ifndef TAREFAS_H
+#define TAREFAS_H
+
+#include <stdio.h>
 
 #define TOTAL 100
 #define tamanhodescricao  300
@@ -10,7 +13,16 @@ typedef struct {
     char categoria[tamanhocategoria];
 } Tarefa;
 
-typedef enum {OK, MAX_TAREFA, SEM_TAREFAS, NAO_ENCONTRADO, ABRIR, FECHAR, ESCREVER, LER} ERROS;
+typedef enum {
+    OK,
+    MAX_TAREFA,
+    SEM_TAREFAS,
+    NAO_ENCONTRADO,
+    ABRIR,
+    FECHAR,
+    ESCREVER,
+    LER
+} ERROS;
 
 typedef ERROS (*funcao)(Tarefa[], int*);
 
@@ -19,6 +31,7 @@ ERROS deletar(Tarefa tarefas[], int *pos);
 ERROS listar(Tarefa tarefas[], int *pos);
 ERROS salvar(Tarefa tarefas[], int *pos);
 ERROS carregar(Tarefa tarefas[], int *pos);
+ERROS exportar(Tarefa tarefas[], int *pos);
 
 void clearBuffer();
 
